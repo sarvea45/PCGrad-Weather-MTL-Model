@@ -14,7 +14,7 @@ def main():
     loss_fn_a = tf.keras.losses.MeanSquaredError()
     loss_fn_b = tf.keras.losses.BinaryCrossentropy()
     
-    epochs = 10
+    epochs = 30
     metrics_log = []
     conflict_log = []
     global_step = 0

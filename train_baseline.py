@@ -14,7 +14,7 @@ def main():
     loss_fn_a = tf.keras.losses.MeanSquaredError()  # Regression for Temp
     loss_fn_b = tf.keras.losses.BinaryCrossentropy() # Classification for Rain
     
-    epochs = 10
+    epochs = 30
     metrics_log = []
     
     @tf.function

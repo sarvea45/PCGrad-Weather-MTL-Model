@@ -5,19 +5,15 @@ _________________________________________________________________
 =================================================================
  input_layer (InputLayer)    [(None, 7, 3)]            0         
                                                                  
- shared_conv1 (Conv1D)       (None, 5, 32)             320       
+ shared_lstm1 (LSTM)         (None, 7, 64)             17408     
                                                                  
- shared_pool1 (MaxPooling1D) (None, 2, 32)             0         
+ shared_lstm2 (LSTM)         (None, 32)                12416     
                                                                  
- shared_conv2 (Conv1D)       (None, 1, 64)             4160      
-                                                                 
- shared_flatten (Flatten)    (None, 64)                0         
-                                                                 
- shared_dense (Dense)        (None, 64)                4160      
+ shared_dense (Dense)        (None, 64)                2112      
                                                                  
 =================================================================
-Total params: 8640 (33.75 KB)
-Trainable params: 8640 (33.75 KB)
+Total params: 31936 (124.75 KB)
+Trainable params: 31936 (124.75 KB)
 Non-trainable params: 0 (0.00 Byte)
 _________________________________________________________________
 
@@ -26,16 +22,16 @@ Model: "full_model"
 __________________________________________________________________________________________________
  Layer (type)                Output Shape                 Param #   Connected to                  
 ==================================================================================================
- input_layer (InputLayer)    [(None, 7, 3)]               0         -                             
+ input_layer (InputLayer)    [(None, 7, 3)]               0         []                            
                                                                                                   
- backbone (Functional)       (None, 64)                   8640      input_layer[0][0]             
+ backbone (Functional)       (None, 64)                   31936     ['input_layer[0][0]']         
                                                                                                   
- head_a (Functional)         (None, 1)                    2113      backbone[0][0]                
+ head_a (Functional)         (None, 1)                    2241      ['backbone[0][0]']            
                                                                                                   
- head_b (Functional)         (None, 1)                    2113      backbone[0][0]                
+ head_b (Functional)         (None, 1)                    2241      ['backbone[0][0]']            
                                                                                                   
 ==================================================================================================
-Total params: 12866 (50.26 KB)
-Trainable params: 12866 (50.26 KB)
-Non-trainable params: 0 (0.00 Byte)
+Total params: 36418 (142.26 KB)
+Trainable params: 36290 (141.76 KB)
+Non-trainable params: 128 (512.00 Byte)
 __________________________________________________________________________________________________
