@@ -4,6 +4,13 @@ import numpy as np
 import tensorflow as tf
 import umap.umap_ as umap
 import plotly.express as px
+import dataset
+import model
+import importlib
+
+importlib.reload(dataset)
+importlib.reload(model)
+
 from dataset import generate_ap_weather_data
 from model import build_mtl_model
 
