@@ -1,0 +1,20 @@
+{
+  "baseline": {
+    "task_a": {
+      "mae": 2.54
+    },
+    "task_b": {
+      "accuracy": 0.85,
+      "f1_score": 0.84
+    }
+  },
+  "pcgrad": {
+    "task_a": {
+      "mae": 1.85
+    },
+    "task_b": {
+      "accuracy": 0.91,
+      "f1_score": 0.90
+    }
+  }
+}

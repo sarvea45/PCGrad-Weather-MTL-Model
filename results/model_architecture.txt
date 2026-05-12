@@ -1,0 +1,41 @@
+=== Shared Backbone Summary ===
+Model: "backbone"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_layer (InputLayer)    [(None, 7, 3)]            0         
+                                                                 
+ shared_conv1 (Conv1D)       (None, 5, 32)             320       
+                                                                 
+ shared_pool1 (MaxPooling1D) (None, 2, 32)             0         
+                                                                 
+ shared_conv2 (Conv1D)       (None, 1, 64)             4160      
+                                                                 
+ shared_flatten (Flatten)    (None, 64)                0         
+                                                                 
+ shared_dense (Dense)        (None, 64)                4160      
+                                                                 
+=================================================================
+Total params: 8640 (33.75 KB)
+Trainable params: 8640 (33.75 KB)
+Non-trainable params: 0 (0.00 Byte)
+_________________________________________________________________
+
+=== Full Model Summary ===
+Model: "full_model"
+__________________________________________________________________________________________________
+ Layer (type)                Output Shape                 Param #   Connected to                  
+==================================================================================================
+ input_layer (InputLayer)    [(None, 7, 3)]               0         -                             
+                                                                                                  
+ backbone (Functional)       (None, 64)                   8640      input_layer[0][0]             
+                                                                                                  
+ head_a (Functional)         (None, 1)                    2113      backbone[0][0]                
+                                                                                                  
+ head_b (Functional)         (None, 1)                    2113      backbone[0][0]                
+                                                                                                  
+==================================================================================================
+Total params: 12866 (50.26 KB)
+Trainable params: 12866 (50.26 KB)
+Non-trainable params: 0 (0.00 Byte)
+__________________________________________________________________________________________________
