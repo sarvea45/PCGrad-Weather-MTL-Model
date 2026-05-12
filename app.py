@@ -58,7 +58,10 @@ if st.button("Generate UMAP Plots"):
         try:
             _, _, input_shape, X_test, y_temp_test, y_rain_test = generate_ap_weather_data()
             model = build_mtl_model(input_shape=input_shape)
-            model.load_weights('results/pcgrad_weights.h5')
+            try:
+                model.load_weights('results/pcgrad_weights.h5')
+            except Exception:
+                st.warning("Pre-trained weights not found at 'results/pcgrad_weights.h5'. Generating UMAP using an un-trained model for demonstration.")
             
             # Subsample for UMAP performance
             idx = np.random.choice(len(X_test), min(len(X_test), 1000), replace=False)
