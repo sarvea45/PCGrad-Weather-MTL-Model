@@ -14,7 +14,7 @@ def main():
     loss_fn_a = tf.keras.losses.MeanSquaredError()  # Regression for Temp
     loss_fn_b = tf.keras.losses.BinaryCrossentropy() # Classification for Rain
     
-    epochs = 30
+    epochs = 10
     metrics_log = []
     
     @tf.function
@@ -26,7 +26,7 @@ def main():
             loss_a = loss_fn_a(labels_a, pred_a)
             loss_b = loss_fn_b(labels_b, pred_b)
             # Both losses scaled to prevent one completely dominating
-            total_loss = loss_a + loss_b * 20.0
+            total_loss = loss_a + loss_b * 10.0
             
         gradients = tape.gradient(total_loss, model.trainable_variables)
         optimizer.apply_gradients(zip(gradients, model.trainable_variables))

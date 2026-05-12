@@ -14,7 +14,7 @@ def main():
     loss_fn_a = tf.keras.losses.MeanSquaredError()
     loss_fn_b = tf.keras.losses.BinaryCrossentropy()
     
-    epochs = 30
+    epochs = 10
     metrics_log = []
     conflict_log = []
     global_step = 0
@@ -28,7 +28,7 @@ def main():
             loss_a = loss_fn_a(labels_a, pred_a)
             loss_b = loss_fn_b(labels_b, pred_b)
             # Scale classification loss slightly so gradients are more balanced
-            loss_b_scaled = loss_b * 20.0
+            loss_b_scaled = loss_b * 10.0
             
         grad_a = tape.gradient(loss_a, model.backbone.trainable_variables)
         grad_b = tape.gradient(loss_b_scaled, model.backbone.trainable_variables)
@@ -64,10 +64,6 @@ def main():
             return grad_a, grad_b
             
         processed_grad_a, processed_grad_b = tf.cond(cosine_sim < 0.0, true_fn, false_fn)
-        
-        # Apply gradient clipping
-        processed_grad_a = [tf.clip_by_norm(g, 1.0) for g in processed_grad_a]
-        processed_grad_b = [tf.clip_by_norm(g, 1.0) for g in processed_grad_b]
         
         final_gradients_backbone = [g_a + g_b for g_a, g_b in zip(processed_grad_a, processed_grad_b)]
         
